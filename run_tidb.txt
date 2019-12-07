@@ -1,0 +1,80 @@
+######## PD SERVER ########
+
+./bin/pd-server --name=pd1 \
+                --data-dir=pd \
+                --client-urls="http://192.168.16.69:2379" \
+                --peer-urls="http://192.168.16.69:2380" \
+                --initial-cluster="pd1=http://192.168.16.69:2380,pd2=http://192.168.16.70:2380,pd3=http://192.168.16.71:2380" \
+                -L "info" \
+                --log-file=pd.log &
+
+./bin/pd-server --name=pd2 \
+                --data-dir=pd \
+                --client-urls="http://192.168.16.70:2379" \
+                --peer-urls="http://192.168.16.70:2380" \
+                --initial-cluster="pd1=http://192.168.16.69:2380,pd2=http://192.168.16.70:2380,pd3=http://192.168.16.71:2380" \
+                -L "info" \
+                --log-file=pd.log &
+
+./bin/pd-server --name=pd3 \
+                --data-dir=pd \
+                --client-urls="http://192.168.16.71:2379" \
+                --peer-urls="http://192.168.16.71:2380" \
+                --initial-cluster="pd1=http://192.168.16.69:2380,pd2=http://192.168.16.70:2380,pd3=http://192.168.16.71:2380" \
+                -L "info" \
+                --log-file=pd.log &
+
+######## TIKV SERVER ########
+
+./bin/tikv-server --pd="192.168.16.69:2379,192.168.16.70:2379,192.168.16.71:2379" \
+                  --addr="192.168.16.72:20160" \
+                  --status-addr="192.168.16.72:20180" \
+                  --data-dir=tikv \
+                  --log-file=tikv.log &
+
+./bin/tikv-server --pd="192.168.16.69:2379,192.168.16.70:2379,192.168.16.71:2379" \
+                  --addr="192.168.16.73:20160" \
+                  --status-addr="192.168.16.73:20180" \
+                  --data-dir=tikv \
+                  --log-file=tikv.log &
+
+./bin/tikv-server --pd="192.168.16.69:2379,192.168.16.70:2379,192.168.16.71:2379" \
+                  --addr="192.168.16.74:20160" \
+                  --status-addr="192.168.16.74:20180" \
+                  --data-dir=tikv \
+                  --log-file=tikv.log &
+
+######## TIDB SERVER (on PD1) ########
+
+./bin/tidb-server --store=tikv \
+                  --path="192.168.16.69:2379,192.168.16.70:2379,192.168.16.71:2379" \
+                  --log-file=tidb.log &
+
+
+######## NODE EXPORTER (all) ########
+
+./node_exporter --web.listen-address=":9100" \
+    --log.level="info" &
+
+######## PROMETHEUS SERVER (on PD1) ########
+
+./prometheus \
+    --config.file="./prometheus.yml" \
+    --web.listen-address=":9090" \
+    --web.external-url="http://192.168.199.113:9090/" \
+    --web.enable-admin-api \
+    --log.level="info" \
+    --storage.tsdb.path="./data.metrics" \
+    --storage.tsdb.retention="15d" &
+
+######## GRAFANA SERVER (on PD1) ########
+
+./bin/grafana-server \
+    --config="./conf/grafana.ini" &
+
+######## Sysbench ########
+
+sysbench oltp_read_write --table-size=100000 --db-driver=mysql --mysql-db=test --mysql-user=root --mysql-host=192.168.16.69 --mysql-port=4000 prepare
+sysbench oltp_read_write --table-size=100000 --db-driver=mysql --mysql-db=test --mysql-user=root --mysql-host=192.168.16.69 --mysql-port=4000 --time=300 run
+
+
