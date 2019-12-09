@@ -102,7 +102,20 @@ There's no **DELETE** endpoint here because it wasn't needed on our usecase.
 
 ### Web Performance
 
-<!-- TODO: explain about JMeter test -->
+The web performance test itself just performing **GET** operation into /pendapatan endpoint. There are 3 combinations in number of connection: 500, 1000 and 1500. Pretty high number because it just serve an API without HTML elements.
+
+Here is the test results:
+
+**500 connections**
+![500](img/jmeter-500.png)
+
+**1000 connections**
+![1000](img/jmeter-1000.png)
+
+**1500 connections**
+![1500](img/jmeter-1500.png)
+
+The result is pretty expected because it's getting slower as the the number of connection increases.
 
 ### Database Performance
 
