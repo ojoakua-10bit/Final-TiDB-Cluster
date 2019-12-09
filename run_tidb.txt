@@ -1,6 +1,6 @@
 ######## PD SERVER ########
 
-./bin/pd-server --name=pd1 \
+tidb-v3.0-linux-amd64/bin/pd-server --name=pd1 \
                 --data-dir=pd \
                 --client-urls="http://192.168.16.69:2379" \
                 --peer-urls="http://192.168.16.69:2380" \
@@ -8,7 +8,7 @@
                 -L "info" \
                 --log-file=pd.log &
 
-./bin/pd-server --name=pd2 \
+tidb-v3.0-linux-amd64/bin/pd-server --name=pd2 \
                 --data-dir=pd \
                 --client-urls="http://192.168.16.70:2379" \
                 --peer-urls="http://192.168.16.70:2380" \
@@ -16,7 +16,7 @@
                 -L "info" \
                 --log-file=pd.log &
 
-./bin/pd-server --name=pd3 \
+tidb-v3.0-linux-amd64/bin/pd-server --name=pd3 \
                 --data-dir=pd \
                 --client-urls="http://192.168.16.71:2379" \
                 --peer-urls="http://192.168.16.71:2380" \
@@ -26,19 +26,19 @@
 
 ######## TIKV SERVER ########
 
-./bin/tikv-server --pd="192.168.16.69:2379,192.168.16.70:2379,192.168.16.71:2379" \
+tidb-v3.0-linux-amd64/bin/tikv-server --pd="192.168.16.69:2379,192.168.16.70:2379,192.168.16.71:2379" \
                   --addr="192.168.16.72:20160" \
                   --status-addr="192.168.16.72:20180" \
                   --data-dir=tikv \
                   --log-file=tikv.log &
 
-./bin/tikv-server --pd="192.168.16.69:2379,192.168.16.70:2379,192.168.16.71:2379" \
+tidb-v3.0-linux-amd64/bin/tikv-server --pd="192.168.16.69:2379,192.168.16.70:2379,192.168.16.71:2379" \
                   --addr="192.168.16.73:20160" \
                   --status-addr="192.168.16.73:20180" \
                   --data-dir=tikv \
                   --log-file=tikv.log &
 
-./bin/tikv-server --pd="192.168.16.69:2379,192.168.16.70:2379,192.168.16.71:2379" \
+tidb-v3.0-linux-amd64/bin/tikv-server --pd="192.168.16.69:2379,192.168.16.70:2379,192.168.16.71:2379" \
                   --addr="192.168.16.74:20160" \
                   --status-addr="192.168.16.74:20180" \
                   --data-dir=tikv \
@@ -46,7 +46,7 @@
 
 ######## TIDB SERVER (on PD1) ########
 
-./bin/tidb-server --store=tikv \
+tidb-v3.0-linux-amd64/bin/tidb-server --store=tikv \
                   --path="192.168.16.69:2379,192.168.16.70:2379,192.168.16.71:2379" \
                   --log-file=tidb.log &
 

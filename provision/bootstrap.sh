@@ -25,20 +25,23 @@ sudo swapoff /swapfile
 if [[ $HOSTNAME == "pd-server-1" ]]; then
 
 	# Install nginx, PHP, and mysql-client (mariadb)
-	sudo dnf install -y nginx mariadb php-cli php-fpm php-pdo php-mysqlnd php-opcache php-xml php-gd php-devel php-intl php-mbstring php-bcmath php-json php-iconv php-soap php-pecl-zip php-xmlrpc
+#	sudo dnf install -y nginx mariadb php-cli php-fpm php-pdo php-mysqlnd php-opcache php-xml php-gd php-devel php-intl php-mbstring php-bcmath php-json php-iconv php-soap php-pecl-zip php-xmlrpc
 	#bash /vagrant/provision/composer-install.sh
 	#sudo mv composer.phar /usr/local/bin/composer -v
 
-	sudo mkdir -pv /var/www/html
-	tar xvf /vagrant/archives/wordpress-latest.tar.gz
-	sudo mv -v wordpress/* /var/www/html && rm -r wordpress
-	sudo mv -v /vagrant/config/wp-config.php /var/www/html
-	sudo chmod -Rv 777 /var/www/html
-	sudo restorecon -rv /var/www
+#	sudo mkdir -pv /var/www/html
+#	tar xvf /vagrant/archives/wordpress-latest.tar.gz
+#	sudo mv -v wordpress/* /var/www/html && rm -r wordpress
+#	sudo mv -v /vagrant/config/wp-config.php /var/www/html
+#	sudo chmod -Rv 777 /var/www/html
+#	sudo restorecon -rv /var/www
 
-	sudo cp -v /vagrant/config/nginx.conf /etc/nginx/nginx.conf
-	sudo systemctl restart nginx php-fpm
+#	sudo cp -v /vagrant/config/nginx.conf /etc/nginx/nginx.conf
+#	sudo systemctl restart nginx php-fpm
 	
+	sudo dnf install java-1.8.0-openjdk
+	cp /vagrant/archives/accounting-1.1.0-SNAPSHOT.jar .
+
 	sudo dnf install -y /vagrant/archives/sysbench-1.0.17-3.el8.x86_64.rpm
 
 	tar xvf /vagrant/archives/prometheus-2.2.1.linux-amd64.tar.gz

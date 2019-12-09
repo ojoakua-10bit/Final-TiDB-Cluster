@@ -1,0 +1,62 @@
+######## 3 PD servers ########
+
+SQL statistics:
+    queries performed:
+        read:                            148092
+        write:                           42312
+        other:                           21156
+        total:                           211560
+    transactions:                        10578  (35.25 per sec.)
+    queries:                             211560 (705.10 per sec.)
+    ignored errors:                      0      (0.00 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          300.0047s
+    total number of events:              10578
+
+Latency (ms):
+         min:                                   19.67
+         avg:                                   28.36
+         max:                                  308.16
+         95th percentile:                       38.94
+         sum:                               299955.90
+
+Threads fairness:
+    events (avg/stddev):           10578.0000/0.00
+    execution time (avg/stddev):   299.9559/0.00
+
+
+######## 2 PD SERVERS ########
+
+SQL statistics:
+    queries performed:
+        read:                            154518
+        write:                           44148
+        other:                           22074
+        total:                           220740
+    transactions:                        11037  (36.79 per sec.)
+    queries:                             220740 (735.72 per sec.)
+    ignored errors:                      0      (0.00 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          300.0325s
+    total number of events:              11037
+
+Latency (ms):
+         min:                                   20.74
+         avg:                                   27.18
+         max:                                  510.92
+         95th percentile:                       34.33
+         sum:                               299984.88
+
+Threads fairness:
+    events (avg/stddev):           11037.0000/0.00
+    execution time (avg/stddev):   299.9849/0.00
+
+######## 1 PD SERVER ########
+
+won't run: PD server timeout
+
+

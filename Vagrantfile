@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
       node.vm.provider "virtualbox" do |vb|
         vb.name = "kv-server-#{i}"
         vb.gui = false
-        vb.memory = "512"
+        vb.memory = "1024"
       end
   
         node.vm.provision "shell", path: "provision/bootstrap.sh", privileged: false
