@@ -26,7 +26,7 @@ NRP: 05111640000069
 
 Hostname | IP | OS | Memory | Running Services
 ----|----|----|----|----
-pd-server-1 | 192.168.16.69 | CentOS 8 | 1024 MB | Webserver (nginx), TiDB, PD1, Prometheus, Grafana, node-exporter
+pd-server-1 | 192.168.16.69 | CentOS 8 | 1024 MB | Web API server, TiDB, PD1, Prometheus, Grafana, node-exporter
 pd-server-2 | 192.168.16.70 | CentOS 8 | 512 MB | PD2, node-exporter
 pd-server-3 | 192.168.16.71 | CentOS 8 | 512 MB | PD3, node-exporter
 kv-server-1 | 192.168.16.72 | CentOS 8 | 1024 MB | TiKV1, node-exporter
