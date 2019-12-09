@@ -57,14 +57,14 @@ CREATE TABLE `pengeluaran` (
 --
 -- Indexes for table `pendapatan`
 --
-ALTER TABLE `pendapatan`
-  ADD PRIMARY KEY (`pend_id`);
+--ALTER TABLE `pendapatan`
+--  ADD PRIMARY KEY (`pend_id`);
 
 --
 -- Indexes for table `pengeluaran`
 --
-ALTER TABLE `pengeluaran`
-  ADD PRIMARY KEY (`peng_id`);
+--ALTER TABLE `pengeluaran`
+--  ADD PRIMARY KEY (`peng_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -73,14 +73,14 @@ ALTER TABLE `pengeluaran`
 --
 -- AUTO_INCREMENT for table `pendapatan`
 --
-ALTER TABLE `pendapatan`
-  MODIFY `pend_id` int(11) NOT NULL AUTO_INCREMENT;
+--ALTER TABLE `pendapatan`
+--  MODIFY `pend_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran`
 --
-ALTER TABLE `pengeluaran`
-  MODIFY `peng_id` int(11) NOT NULL AUTO_INCREMENT;
+--ALTER TABLE `pengeluaran`
+--  MODIFY `peng_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

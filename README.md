@@ -35,7 +35,68 @@ kv-server-3 | 192.168.16.74 | CentOS 8 | 1024 MB | TiKV3, node-exporter
 
 ## Deployment
 
-<!-- TODO: explain about deployment process -->
+For the implementation itself, currently I'm using my past final project API linked here: https://github.com/yoshimaputri/AccountingService
+
+Before that, I was considering to use wordpress CMS for implementation. But it acted so strange and don't want to connect to TiDB database even though I already supplied the correct database host, database name, username and password. Already checked it manually using PHP interactive shell to check if the PHP-mysql client is compatible with TiDB and the result is every connection attempts were successfully created.
+
+This API implementation itself was written using Java with Spring Framework and Hibernate API. The application works well under TiDB cluster with some modifications from the original source code regarding the connection string. I also had to alter DDL syntax a bit from the one dumped from phpmyadmin previously because TiDB doesn't support some operation there like adding primary keys and auto_increment after table being created.
+
+There are 12 endpoints available on this API. You can find the more complete documentation on [Swagger Page](https://app.swaggerhub.com/apis-docs/yoshimaputri/swagger-accounting/1.0.0), but I'll provide some overview here.
+
+**Pendapatan** object:
+
+- `tanggal`: Date (YYYY-MM-DD format)
+- `jumlah`: number
+- `id_restaurant`: string, optional
+- `keterangan`: string, optional
+
+**Pengeluaran** object:
+
+- `tanggal`: Date (YYYY-MM-DD format)
+- `jumlah`: number
+- `id_restaurant`: string, optional
+- `keterangan`: string, optional
+
+BASE URL: http://192.168.16.69:8080/
+
+**POST** /pendapatan  
+Create new Pendapatan object.
+
+**POST** /pengeluaran  
+Create new Pengeluaran object.
+
+**PUT** /pendapatan/{id}  
+Make an edit to an existing Pendapatan object with a certain id.
+
+**PUT** /pengeluaran/{id}  
+Make an edit to an existing Pengeluaran object with a certain id.
+
+**PATCH** /pendapatan/{id}  
+Make an edit to an existing Pendapatan object with a certain id.
+
+**PATCH** /pengeluaran/{id}  
+Make an edit to an existing Pengeluaran object with a certain id.
+
+**GET** /pendapatan  
+Get the list of Pendapatan object.
+
+**GET** /pendapatan/{tahun}  
+Get the list of Pendapatan object by tahun (year).
+
+**GET** /pendapatan/{tahun}/{bulan}  
+Get the list of Pendapatan object by tahun (year) and bulan (month).
+
+**GET** /pengeluaran  
+Get the list of Pengeluaran object.
+
+**GET** /pengeluaran/{tahun}  
+Get the list of Pengeluaran object by tahun (year).
+
+**GET** /pengeluaran/{tahun}/{bulan}  
+Get the list of Pengeluaran object by tahun (year) and bulan (month).
+
+
+There's no **DELETE** endpoint here because it wasn't needed on our usecase.
 
 ## Load Testing
 
