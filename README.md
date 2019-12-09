@@ -201,4 +201,10 @@ No result for this section. Sysbench refused to run with only 1 pd server with r
 
 ## Failover Testing
 
-<!-- TODO: explain about Failover test -->
+I'm doing failover testing by turning off one of TiKV server and then start it again to see if the data affected in this process.
+
+Here's the screenshot of demonstration of failover test scenario. The data still remains even if there's a dead TiKV node in the middle of transaction.
+
+![failover-1](img/failover1.png)
+![failover-2](img/failover2.png)
+![failover-3](img/failover3.png)
